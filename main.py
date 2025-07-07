@@ -15,3 +15,4 @@ while is_game:
 
     pygame.display.update()
     clock.tick(40)
+#ДОПИШИ ИГРУ!
