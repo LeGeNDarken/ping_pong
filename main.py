@@ -7,7 +7,7 @@ clock = pygame.time.Clock()
 win.fill((0, 220, 255))
 
 is_game = True
-
+#阿松大个
 while is_game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
