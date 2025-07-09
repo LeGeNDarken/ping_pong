@@ -28,7 +28,7 @@ class Player(GameSprite):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if keys[pygame.K_DOWN] and self.rect.y < 415:
+        if keys[pygame.K_DOWN] and self.rect.y < 350:
             self.rect.y += self.speed
     def update_l(self):
         keys = pygame.key.get_pressed()
@@ -43,14 +43,30 @@ racket1 = Player('racket.png', 30, 200, 4, 50, 150)
 racket2 = Player('racket.png', 520, 200, 4, 50, 150)
 ball = GameSprite('tenis_ball.png', 200, 200, 4, 50, 50)
 
+speed_x = 5
+speed_y = 5
+
 while is_game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             is_game = False
 
-    pygame.display.update()
+    win.fill(back)
+    ball.rect.x += speed_x
+    ball.rect.y += speed_y
+
+    if ball.rect.y > 450 or ball.rect.y < 50:
+        speed_y *= -1
+
+    if pygame.sprite.collide_rect(racket1, ball) or pygame.sprite.collide_rect(racket2, ball):
+        speed_x *= -1
+
+    racket1.update_l()
+    racket2.update_r()
+
     racket1.reset()
     racket2.reset()
     ball.reset()
+    pygame.display.update()
     clock.tick(40)
 #ДОПИШИ ИГРУ!
